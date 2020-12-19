@@ -16,6 +16,7 @@ const AddButton = (props) => {
         style={styles.input}
         placeholder={props.holder}
         placeholderTextColor="#FE5D26"
+        ref={props.onClean}
       />
       <TouchableOpacity
         testID="button"

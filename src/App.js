@@ -15,6 +15,9 @@ import {AddButton, ToDoCard} from './components';
  */
 
 function App() {
+  const TextInputs = React.useRef();
+  const clearInput = () => TextInputs.current.clear();
+
   const [text, setText] = useState('');
 
   const [counter, setCounter] = useState(0);
@@ -23,20 +26,58 @@ function App() {
 
   const addTodo = (text) => {
     //useState'deki text bu şekilde alınır.
-    const items = {
-      id: Math.random().toString(),
-      activity: text,
-      isDone: false,
-    };
-    let copyList = [items, ...todos];
+    if (text) {
+      const items = {
+        id: Math.random().toString(),
+        activity: text,
+        isDone: false,
+      };
+      let copyList = [items, ...todos];
 
+      setTodos(copyList);
+      setCounter(copyList.length);
+    } /*text doluysa çalış demek bu da */
+
+    clearInput(); /*ınputu temizleme*/
+  };
+
+  const inactiveFunc = (toDoId) => {
+    let copyList = [...todos];
+
+    const toDoIndex = copyList.findIndex((number) => number.id === toDoId); // todoId == item.id
+    copyList[toDoIndex].isDone = !copyList[toDoIndex].isDone;
+    setTodos(copyList);
+    countToDo();
+  };
+
+  const countToDo = () => {
+    let copyList = [...todos];
+    const count = copyList.filter((i) => i.isDone == false);
+    setCounter(count.length);
+  };
+
+  const removeFunc = (toDoId) => {
+    let copyList = [...todos];
+    const removeIndex = copyList.findIndex((number) => number.id === toDoId); // todoId == item.id
+    copyList.splice(removeIndex, 1);
     setTodos(copyList);
     setCounter(copyList.length);
   };
 
   const renderTodo = ({item}) => {
-    return <ToDoCard /*onClear={() => }*/ work={item} />;
-  };
+    /*buradaki item yukarıdaki items objesini (tamamını) temsil ediyor.*/
+
+    if (item.activity) {
+      return (
+        <ToDoCard
+          onDone={() => inactiveFunc(item.id)}
+          work={item}
+          onClear={() => removeFunc(item.id)}
+        />
+      );
+    }
+    console.log(item.activity);
+  }; /* true ise döndür demek*/
 
   return (
     <SafeAreaView style={{backgroundColor: '#faedca'}}>
@@ -57,6 +98,7 @@ function App() {
           holder="Bir şeyler giriniz..."
           entry={(text) => setText(text)}
           onSubmit={() => addTodo(text)}
+          onClean={TextInputs}
         />
       </View>
     </SafeAreaView>
