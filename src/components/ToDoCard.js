@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   container: {
     borderColor: 'red',
     borderRadius: 5,
-    backgroundColor: '#839791',
+    backgroundColor: '#ef6c00',
     marginVertical: 10,
   },
   text: {
@@ -29,13 +29,14 @@ const styles = StyleSheet.create({
   disabledContainer: {
     borderColor: 'red',
     borderRadius: 5,
-    backgroundColor: 'red',
+    backgroundColor: '#ffcc80',
     marginVertical: 10,
   },
   disabledText: {
     padding: 10,
     color: 'white',
-    fontWeight: 'bold',
+    fontWeight: '100',
+    textDecorationLine: 'line-through',
   },
 });
 
