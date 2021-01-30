@@ -6,9 +6,9 @@
 
 I'm a developer from **Kodluyoruz Bootcamp** and I'm trying a few beauty things
 
-|                         |                         |                         |
-| :---------------------: | :---------------------: | :---------------------: |
-| ![](./screenshot/1.png) | ![](./screenshot/2.png) | ![](./screenshot/3.png) |
+|                          |                          |                          |
+| :----------------------: | :----------------------: | :----------------------: |
+| ![](./screenshots/1.png) | ![](./screenshots/2.png) | ![](./screenshots/3.png) |
 
 <br/>
 
